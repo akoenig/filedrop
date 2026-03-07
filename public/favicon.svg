@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Back card (more visible offset) -->
+  <rect x="12" y="1" width="17" height="24" rx="3" fill="#F5F3F0" stroke="#D4D0C8" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Middle card -->
+  <rect x="7" y="4" width="17" height="24" rx="3" fill="white" stroke="#D4D0C8" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Front card - white with orange border -->
+  <rect x="2" y="7" width="17" height="24" rx="3" fill="white" stroke="#D97757" stroke-width="2" filter="url(#shadow)"/>
+</svg>

@@ -1,0 +1,4 @@
+version: 1
+allowedHosts:
+  - host: "*.schemastore.org"
+    description: "Required for the Zed Editor"

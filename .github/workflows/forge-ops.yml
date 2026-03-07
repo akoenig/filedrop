@@ -1,0 +1,17 @@
+name: Forge Ops
+
+on:
+  issues:
+    types: [opened, assigned, closed]
+  issue_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  ops:
+    uses: openformation/.github/.github/workflows/forge-ops.yml@main
+    secrets: inherit
+
