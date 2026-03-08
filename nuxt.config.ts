@@ -35,6 +35,9 @@ export default defineNuxtConfig({
         name: process.env.APP_NAME,
         main: "./index.mjs",
         compatibility_date: "2025-07-15",
+        vars: {
+          NUXT_UPLOAD_TOKEN: process.env.NUXT_UPLOAD_TOKEN || "",
+        },
         r2_buckets: [
           {
             binding: "BUCKET",
