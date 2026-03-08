@@ -82,6 +82,16 @@ Go to Settings > Secrets and variables > Actions.
 
 Push to `main`. GitHub Actions builds the app, generates the Wrangler config (including the R2 binding and upload token), and deploys to Cloudflare Workers.
 
+## Agent skill
+
+filedrop exposes a machine-readable skill definition at `/skill` so that AI agents can learn how to interact with the service autonomously.
+
+Install the skill:
+
+```bash
+pnpx skills add https://filedrop.andrekoenig.com/skill
+```
+
 ## Project structure
 
 ```
@@ -96,6 +106,7 @@ app/
 server/
   routes/
     files.post.ts     # POST /files — upload endpoint
+    skill.get.ts      # GET /skill — agent skill definition
   api/files/
     [id].get.ts       # GET /api/files/:id — file metadata
   middleware/
