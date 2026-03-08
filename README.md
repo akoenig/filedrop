@@ -75,12 +75,3 @@ git push origin main
 ```
 
 GitHub Actions builds the app and deploys it to Cloudflare Workers. Your service will be available at `https://<APP_NAME>.<your-subdomain>.workers.dev`.
-
-## Development
-
-```bash
-pnpm install
-pnpm dev
-```
-
-R2 is not available during `nuxt dev`. File upload/download requires deploying to Cloudflare or running `wrangler dev` on the build output.
