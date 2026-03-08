@@ -49,12 +49,6 @@ export default defineNuxtConfig({
   },
 
   $production: {
-  routeRules: {
-    "/.well-known/**": {
-      headers: { "content-type": "text/markdown; charset=utf-8" },
-    },
-  },
-
   nitro: {
       preset: "cloudflare-module",
     },
