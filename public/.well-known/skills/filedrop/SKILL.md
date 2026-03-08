@@ -25,11 +25,15 @@ Response:
 }
 ```
 
-Download a file:
+Download a file by ID (saves with the original filename):
 
 ```bash
-curl -O https://filedrop.andrekoenig.com/a3xK9f2b
+curl -OJ https://filedrop.andrekoenig.com/a3xK9f2b
+
+wget --content-disposition https://filedrop.andrekoenig.com/a3xK9f2b
 ```
+
+The `-OJ` flags tell curl to use the `Content-Disposition` header sent by the server, which contains the original filename. For wget, the `--content-disposition` flag does the same. Without these flags, the file will be saved as the ID instead.
 
 ## API
 
@@ -60,11 +64,11 @@ Uploads a file. Returns a download URL.
 
 ### GET /:id
 
-Downloads a file. No authentication required.
+Downloads a file. No authentication required. The server sets `Content-Disposition` with the original filename.
 
-- Without `Accept: text/html` (curl/wget): streams the raw file.
+- `curl -OJ <url>` — saves with the original filename.
+- `wget --content-disposition <url>` — saves with the original filename.
 - With `Accept: text/html` (browser): renders a download page.
-- Append `?download=true` to force raw file download.
 
 | Error | Meaning |
 |-------|---------|
