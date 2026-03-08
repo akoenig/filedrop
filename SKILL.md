@@ -1,32 +1,48 @@
-# Skill: filedrop
+---
+name: filedrop
+description: Upload and share files via short-lived links. Use when you need to share a file with someone via a URL, make a generated artifact downloadable, or need temporary file hosting. Files expire after 7 days.
+compatibility: Requires network access and curl or similar HTTP client.
+allowed-tools: Bash(curl:*)
+metadata:
+  author: andrekoenig
+---
 
-Upload and share files via short-lived links. Files expire after 7 days.
+## Usage
 
-## When to Use
-
-- When you need to share a file with someone via a URL
-- When you need to make a generated artifact (build output, report, export) downloadable
-- When you need temporary file hosting that cleans up automatically
-
-## API
-
-### Upload a file
-
-```
-POST /files
-```
-
-**Authentication** (required — use one of these):
-
-- Query parameter: `?token=<token>`
-- Header: `Authorization: Bearer <token>`
-
-**Request:** Multipart form data with a `file` field.
+Upload a file and receive a shareable URL:
 
 ```bash
 curl -X POST "https://filedrop.andrekoenig.com/files?token=TOKEN" \
   -F "file=@path/to/file.pdf"
 ```
+
+Response:
+
+```json
+{
+  "url": "https://filedrop.andrekoenig.com/a3xK9f2b",
+  "expiresAt": "2026-03-15T12:00:00.000Z"
+}
+```
+
+Download a file:
+
+```bash
+curl -O https://filedrop.andrekoenig.com/a3xK9f2b
+```
+
+## API
+
+### POST /files
+
+Uploads a file. Returns a download URL.
+
+**Authentication** (required -- use one):
+
+- Query parameter: `?token=<token>`
+- Header: `Authorization: Bearer <token>`
+
+**Request:** Multipart form data with a `file` field.
 
 **Response** (200):
 
@@ -37,54 +53,27 @@ curl -X POST "https://filedrop.andrekoenig.com/files?token=TOKEN" \
 }
 ```
 
-**Errors:**
-
-| Status | Meaning |
-|--------|---------|
-| 400 | No file provided — send multipart form with a `file` field |
+| Error | Meaning |
+|-------|---------|
+| 400 | No file provided |
 | 401 | Invalid or missing token |
-| 500 | Upload token not configured on server |
 
-### Download a file
+### GET /:id
 
-```
-GET /:id
-```
+Downloads a file. No authentication required.
 
-No authentication required. Behavior depends on the client:
+- Without `Accept: text/html` (curl/wget): streams the raw file.
+- With `Accept: text/html` (browser): renders a download page.
+- Append `?download=true` to force raw file download.
 
-- **curl / wget** (no `Accept: text/html`): Streams the raw file with `Content-Disposition: attachment`.
-- **Browser** (`Accept: text/html`): Renders an HTML download page.
-- **Explicit download**: Append `?download=true` to force raw file download regardless of `Accept` header.
-
-```bash
-# Download directly
-curl -O https://filedrop.andrekoenig.com/a3xK9f2b
-
-# Force download (useful in scripts)
-curl -O https://filedrop.andrekoenig.com/a3xK9f2b?download=true
-```
-
-**Errors:**
-
-| Status | Meaning |
-|--------|---------|
+| Error | Meaning |
+|-------|---------|
 | 404 | File not found |
 | 410 | File has expired |
 
-### Get file metadata
+### GET /api/files/:id
 
-```
-GET /api/files/:id
-```
-
-Returns file information without downloading the file contents.
-
-```bash
-curl https://filedrop.andrekoenig.com/api/files/a3xK9f2b
-```
-
-**Response** (200):
+Returns file metadata without downloading.
 
 ```json
 {
@@ -97,12 +86,6 @@ curl https://filedrop.andrekoenig.com/api/files/a3xK9f2b
   "expired": false
 }
 ```
-
-**Errors:**
-
-| Status | Meaning |
-|--------|---------|
-| 404 | File not found |
 
 ## Limits
 
