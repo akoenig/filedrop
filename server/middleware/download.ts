@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {
     path.startsWith("/_nuxt") ||
     path.startsWith("/api") ||
     path.startsWith("/files") ||
+    path.startsWith("/skill") ||
     path.startsWith("/__nuxt") ||
     path.includes(".")
   ) {
