@@ -8,9 +8,13 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
+  runtimeConfig: {
+    uploadToken: "", // Set via NUXT_UPLOAD_TOKEN env var
+  },
+
   app: {
     head: {
-      title: "Open Formation WebApp",
+      title: "filedrop",
       titleTemplate: "%s",
       meta: [
         {
@@ -24,25 +28,6 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    experimental: {
-      database: true,
-    },
-    database: {
-      default: {
-        connector: "cloudflare-d1",
-        options: {
-          bindingName: "DB",
-        },
-      },
-    },
-    devDatabase: {
-      default: {
-        connector: "sqlite",
-        options: {
-          name: "app",
-        },
-      },
-    },
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
@@ -50,11 +35,10 @@ export default defineNuxtConfig({
         name: process.env.APP_NAME,
         main: "./index.mjs",
         compatibility_date: "2025-07-15",
-        d1_databases: [
+        r2_buckets: [
           {
-            binding: "DB",
-            database_name: process.env.D1_DATABASE_NAME,
-            database_id: process.env.D1_DATABASE_ID,
+            binding: "BUCKET",
+            bucket_name: process.env.R2_BUCKET_NAME || "filedrop",
           },
         ],
       },

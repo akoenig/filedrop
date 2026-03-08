@@ -31,8 +31,7 @@ jobs:
         env:
           NODE_ENV: production
           APP_NAME: ${{ vars.APP_NAME }}
-          D1_DATABASE_NAME: ${{ vars.D1_DATABASE_NAME }}
-          D1_DATABASE_ID: ${{ vars.D1_DATABASE_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
 
       - name: Deploy to Cloudflare Workers
         run: pnpx wrangler deploy
