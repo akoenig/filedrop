@@ -1,0 +1,11 @@
+{
+  "skills": [
+    {
+      "name": "filedrop",
+      "description": "Upload and share files via short-lived links. Use when you need to share a file with someone via a URL, make a generated artifact downloadable, or need temporary file hosting. Files expire after 7 days.",
+      "files": [
+        "SKILL.md"
+      ]
+    }
+  ]
+}

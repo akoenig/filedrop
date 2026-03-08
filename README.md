@@ -6,7 +6,7 @@ Deployed on Cloudflare Workers with R2 for object storage.
 
 ## Agent skill
 
-filedrop ships a machine-readable skill definition so that AI agents can interact with the service autonomously:
+filedrop ships a machine-readable [skill definition](https://agentskills.io/specification) discoverable via the [`.well-known/skills/` convention](https://github.com/cloudflare/agent-skills-discovery-rfc):
 
 ```bash
 pnpx skills add https://your-domain.com/skill
