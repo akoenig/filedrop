@@ -1,8 +1,8 @@
 # filedrop
 
-A minimal file sharing service. Upload files via API, share them with a link, download from the browser or curl. Files expire automatically after 7 days.
+A minimal file sharing service designed for AI agents. Upload files via API, share them with a link, download from the browser or curl. Files expire automatically after 7 days.
 
-Deployed on Cloudflare Workers with R2 for object storage.
+Agents can install the [filedrop skill](#agent-skill) to learn how to interact with the service autonomously. Deployed on Cloudflare Workers with R2 for object storage.
 
 ## How it works
 
