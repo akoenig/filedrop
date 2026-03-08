@@ -4,7 +4,7 @@ description: Upload and share files via short-lived links. Use when you need to 
 compatibility: Requires network access and curl or similar HTTP client.
 allowed-tools: Bash(curl:*)
 metadata:
-  author: andrekoenig
+  author: "André König"
 ---
 
 ## Usage
