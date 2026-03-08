@@ -6,12 +6,12 @@
     <footer class="py-4 text-center">
       <p class="text-xs text-dimmed">
         <a
-          href="https://openformation.io"
+          href="https://andrekoenig.com"
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-muted transition-colors"
         >
-          Open Formation GmbH
+          André König
         </a>
       </p>
     </footer>
